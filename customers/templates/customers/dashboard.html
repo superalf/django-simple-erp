@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Customer Dashboard</h2>
+    <form method="get" class="mb-4">
+        <label for="days">Show new signups in the last</label>
+        <select name="days" id="days" onchange="this.form.submit()" class="form-select d-inline w-auto mx-2">
+            <option value="7" {% if timeframe_days == 7 %}selected{% endif %}>7 days</option>
+            <option value="30" {% if timeframe_days == 30 %}selected{% endif %}>30 days</option>
+            <option value="90" {% if timeframe_days == 90 %}selected{% endif %}>90 days</option>
+        </select>
+    </form>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Customers</h5>
+                    <p class="card-text display-5">{{ total_customers }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">New Signups (last {{ timeframe_days }} days)</h5>
+                    <p class="card-text display-5">{{ new_signups }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
